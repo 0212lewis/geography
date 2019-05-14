@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table id="datatable">
+        <thead>
+        <tr>
+            <th>User Id</th>
+            <th>User Name</th>
+            <th>User1</th>
+            <th>User2</th>
+            <th>User3</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+<script src="../static/lib/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+</script>
+</html>
