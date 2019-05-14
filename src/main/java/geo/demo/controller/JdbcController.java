@@ -1,10 +1,11 @@
 package geo.demo.controller;
 
-import geo.demo.entity.User;
+import geo.demo.entity.country;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -19,22 +20,23 @@ public class JdbcController {
     @Resource
     private JdbcTemplate jdbcTemplate;
 
-    @RequestMapping("/user_list")
-    public List<User> getUserList(){
-        String sql = "SELECT * FROM user";
-        List<User> userlist = jdbcTemplate.query(sql, new RowMapper<User>() {
-            User user = null;
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<country> getUserList(@RequestParam String countryName){
+        String sql = "SELECT * FROM "+countryName;
+        List<country> countrylist = jdbcTemplate.query(sql, new RowMapper<country>() {
+            country country = null;
             @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                user = new User();
-                user.setName(resultSet.getString("name"));
-                user.setId(resultSet.getInt("id"));
-                return user;
+            public country mapRow(ResultSet resultSet, int i) throws SQLException {
+                country = new country();
+                country.setOBJECTID(resultSet.getInt("OBJECTID"));
+                country.setDLBM(resultSet.getString("DLBM"));
+                country.setDLMC(resultSet.getString("DLMC"));
+                country.setSHAPE_Leng(resultSet.getDouble("SHAPE_Leng"));
+                country.setSHAPE_Length(resultSet.getDouble("SHAPE_Length"));
+                country.setSHAPE_Area(resultSet.getDouble("SHAPE_Area"));
+                return country;
             }
         });
-        for(User user:userlist){
-            System.out.println(user.getName());
-        }
-        return userlist;
+        return countrylist;
     }
 }
