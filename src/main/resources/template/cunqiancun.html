@@ -199,7 +199,7 @@
                     params:{
                         countryName:"村前村"
                     }
-                }).then((response) => {
+                }).then(function(response){
                     this.items=response.body
                     setTimeout(function () {
                         $('#example1').DataTable()

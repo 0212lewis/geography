@@ -39,4 +39,13 @@ public class JdbcController {
         });
         return countrylist;
     }
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public int login(@RequestParam String username, @RequestParam String password) {
+        System.out.println(username);
+        System.out.println(password);
+        if( username.equals("lsj") && password.equals("123456")){
+            return 1;
+        }
+        return 0;
+    }
 }
